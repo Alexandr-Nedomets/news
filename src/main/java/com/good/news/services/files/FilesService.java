@@ -1,6 +1,7 @@
 package com.good.news.services.files;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,11 +15,11 @@ import java.util.UUID;
 @Service
 public class FilesService {
 
-    private static String PATH_UPLOAD_FILE = new File("src/main/resources/static/uploads/images").getAbsolutePath() + "/";
+    @Value("${path.upload.file}")
+    private String PATH_UPLOAD_FILE;
 
     public String upload(MultipartFile file) {
         String imageName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        String result = "/uploads/images/" + imageName;
         String fileName = PATH_UPLOAD_FILE + imageName;
         try {
             log.info("Файл загружается: " + imageName);
@@ -28,13 +29,13 @@ public class FilesService {
             log.error("Ошибка при загрузки файла: " + imageName);
             e.printStackTrace();
         }
-        return result;
+        return imageName;
     }
 
     public void delete(String fileName) {
         try {
             log.info("Файл удаляется: " + fileName);
-            Files.delete(Paths.get(fileName));
+            Files.delete(Paths.get(PATH_UPLOAD_FILE + fileName));
             log.info("Файл удален: " + fileName);
         } catch (IOException e) {
             log.error("Ошибка при удалении файла: " + fileName);

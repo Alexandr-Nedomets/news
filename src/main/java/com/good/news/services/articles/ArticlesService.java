@@ -18,35 +18,35 @@ public class ArticlesService {
     private List<Article> articles;
     private List<ArticleImage> articleImages;
 
-    {
-        articleImages = Stream
-                .of(
-                        new ArticleImage(1L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 1"),
-                        new ArticleImage(2L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 2"),
-                        new ArticleImage(3L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 3"),
-                        new ArticleImage(4L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 4"),
-                        new ArticleImage(5L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 5"),
-                        new ArticleImage(6L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 6"),
-                        new ArticleImage(7L, "/uploads/images/97d4245b-f48e-47de-b085-66f8c425f770_123.jpg", "Черепаха 7")
-                )
-                .collect(Collectors.toList());
-        articles = Stream
-                .of(
-                        new Article(1L, "Италия", "Италия выиграла Англию", LocalDateTime.now(), LocalDateTime.now(), "Сергей", articleImages.get(0)),
-                        new Article(2L, "Англия", "Англия проиграла Италия", LocalDateTime.now(), LocalDateTime.now(), "Игнат", articleImages.get(1)),
-                        new Article(3L, "Дания", "Дания проиграла Англии", LocalDateTime.now(), LocalDateTime.now(), "Иван", articleImages.get(2)),
-                        new Article(4L, "Испания", "Испания проиграла Италии", LocalDateTime.now(), LocalDateTime.now(), "Николай", articleImages.get(3)),
-                        new Article(5L, "Украина", "Украина победила Швецию", LocalDateTime.now(), LocalDateTime.now(), "Альберт", articleImages.get(4)),
-                        new Article(6L, "Россия", "Россия победила Финляндию", LocalDateTime.now(), LocalDateTime.now(), "Зоя", articleImages.get(5)),
-                        new Article(7L, "Бельгия", "Бельгия потерпела поражение", LocalDateTime.now(), LocalDateTime.now(), "Света", articleImages.get(6))
-                )
-                .collect(Collectors.toList());
-    }
+//    {
+//        articleImages = Stream
+//                .of(
+//                        new ArticleImage(1L, "3245d1a1-70ca-4cd4-85ff-0ff4e00f6bfa_123.jpg", "Черепаха 1"),
+//                        new ArticleImage(2L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 2"),
+//                        new ArticleImage(3L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 3"),
+//                        new ArticleImage(4L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 4"),
+//                        new ArticleImage(5L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 5"),
+//                        new ArticleImage(6L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 6"),
+//                        new ArticleImage(7L, "2289f7ab-91f2-4dc7-8506-c53e14660b44_forest3.jpg", "Черепаха 7")
+//                )
+//                .collect(Collectors.toList());
+//        articles = Stream
+//                .of(
+//                        new Article(1L, "Италия", "Италия выиграла Англию", LocalDateTime.now(), LocalDateTime.now(), "Сергей", articleImages.get(0)),
+//                        new Article(2L, "Англия", "Англия проиграла Италия", LocalDateTime.now(), LocalDateTime.now(), "Игнат", articleImages.get(1)),
+//                        new Article(3L, "Дания", "Дания проиграла Англии", LocalDateTime.now(), LocalDateTime.now(), "Иван", articleImages.get(2)),
+//                        new Article(4L, "Испания", "Испания проиграла Италии", LocalDateTime.now(), LocalDateTime.now(), "Николай", articleImages.get(3)),
+//                        new Article(5L, "Украина", "Украина победила Швецию", LocalDateTime.now(), LocalDateTime.now(), "Альберт", articleImages.get(4)),
+//                        new Article(6L, "Россия", "Россия победила Финляндию", LocalDateTime.now(), LocalDateTime.now(), "Зоя", articleImages.get(5)),
+//                        new Article(7L, "Бельгия", "Бельгия потерпела поражение", LocalDateTime.now(), LocalDateTime.now(), "Света", articleImages.get(6))
+//                )
+//                .collect(Collectors.toList());
+//    }
 
-    @PostConstruct
-    private void fillDB(){
-        articlesRepository.saveAll(articles);
-    }
+//    @PostConstruct
+//    private void fillDB(){
+//        articlesRepository.saveAll(articles);
+//    }
 
 
     public ArticlesService(ArticlesRepository newsRepository) {
@@ -74,6 +74,7 @@ public class ArticlesService {
         articleForUpdate.setTitle(article.getTitle());
         articleForUpdate.setContent(article.getContent());
         articleForUpdate.setAuthor(article.getAuthor());
+        articleForUpdate.setImage(article.getImage());
         return save(articleForUpdate);
     }
 }

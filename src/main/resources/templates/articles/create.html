@@ -10,22 +10,8 @@
     <title>GOOD NEWS</title>
 </head>
 <body>
-<!--Загрузка файла-->
-<div class="container">
-    <form class="form-signin" method="post" enctype="multipart/form-data" action="/api/v001/files" >
-        <label class="form-label">Multiple files input example</label>
-        <input class="form-control" type="file" name="file" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Upload file</button>
-    </form>
-</div>
-<div th:if="${fileName}" th:utext="${fileName}">
-    <p th:text="${fileName}">VALUE</p>
-</div>
-<div th:if="${fileName}" th:utext="${fileName}">
-    <img th:src="${fileName}" >
-</div>
 Добавить новую статью
-<form th:method="POST" th:action="@{/api/v001/articles}" th:object="${article}">
+<form th:method="POST" enctype="multipart/form-data" th:action="@{/api/v001/articles}" th:object="${article}">
     <label for="title">Enter name: </label>
     <input type="text" th:field="*{title}" id="title"/>
     <br/>
@@ -34,6 +20,12 @@
     <br/>
     <label for="author">Enter author: </label>
     <input type="text" th:field="*{author}" id="author"/>
+    <br/>
+    <label class="form-label">Multiple files input example</label>
+    <input class="form-control" type="file" name="file" />
+    <br/>
+    <label for="image.description">Enter image description: </label>
+    <input type="text" th:field="*{image.description}" id="image.description"/>
     <br/>
     <input type="submit" value="Create Article!"/>
 </form>

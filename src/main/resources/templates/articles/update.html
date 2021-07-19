@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--Обновить статью-->
-<form th:method="PUT" th:action="@{@{/api/v001/articles/{id}(id=${article.id})}}" th:object="${article}">
+<form th:method="PUT" th:action="@{@{/api/v001/articles/{id}(id=${article.id})}}" enctype="multipart/form-data" th:object="${article}">
     <label for="title">Change name: </label>
     <input type="text" th:field="*{title}" id="title"/>
     <br/>
@@ -21,6 +21,15 @@
     <label for="author">Change author: </label>
     <input type="text" th:field="*{author}" id="author"/>
     <br/>
+    <img th:src="${'/images/' + article.image.path}" >
+    <label class="form-label">Multiple files input example</label>
+    <input class="form-control" type="file" name="file" />
+    <br/>
+    <label for="image.description">Enter image description: </label>
+    <input type="text" th:field="*{image.description}" id="image.description"/>
+    <br/>
+    <input hidden="true" type="text" th:field="*{image.path}"/>
+    <input hidden="true" type="text" th:field="*{image.id}"/>
     <input type="submit" value="SAVE"/>
 </form>
 
