@@ -14,12 +14,12 @@ import javax.persistence.*;
 public class ArticleImage {
 
     @Id
-    @Column(name = "article_image_id")
+    @Column(name = "article_image_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "path")
-    private String path;
-    @Column(name = "description")
+    @Column(name = "image_name", unique = true, nullable = false)
+    private String name;
+    @Column(name = "description", nullable = false)
     private String description;
 
 }

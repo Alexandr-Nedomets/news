@@ -15,7 +15,7 @@
     <p th:text="${article.dateCreated}">VALUE</p>
     <p th:text="${article.dateUpdated}">VALUE</p>
     <p th:text="${article.author}">VALUE</p>
-    <img th:src="${'/images/' + article.image.path}" >
+    <img th:src="${'/images/' + article.image.name}" >
 </div>
 
 <form th:method="DELETE" th:action="@{/api/v001/articles/{id}(id=${article.id})}">

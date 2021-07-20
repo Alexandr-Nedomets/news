@@ -12,20 +12,24 @@
 <body>
 Добавить новую статью
 <form th:method="POST" enctype="multipart/form-data" th:action="@{/api/v001/articles}" th:object="${article}">
-    <label for="title">Enter name: </label>
+    <label for="title">Enter title: </label>
     <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">value</div>
     <br/>
-    <label for="content">Enter description: </label>
+    <label for="content">Enter content: </label>
     <input type="text" th:field="*{content}" id="content"/>
+    <div style="color:red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">value</div>
     <br/>
     <label for="author">Enter author: </label>
     <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">value</div>
     <br/>
     <label class="form-label">Multiple files input example</label>
     <input class="form-control" type="file" name="file" />
     <br/>
     <label for="image.description">Enter image description: </label>
     <input type="text" th:field="*{image.description}" id="image.description"/>
+    <div style="color:red" th:if="${#fields.hasErrors('image.description')}" th:errors="*{image.description}">value</div>
     <br/>
     <input type="submit" value="Create Article!"/>
 </form>

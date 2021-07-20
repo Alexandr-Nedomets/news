@@ -22,7 +22,7 @@ public class Article {
     private Long id;
     @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, length = 5000)
     private String content;
     @Column(name = "date_created", nullable = false)
     @CreationTimestamp

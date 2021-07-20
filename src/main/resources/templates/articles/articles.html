@@ -16,7 +16,7 @@
     <a th:href="@{/api/v001/articles/{id}(id=${article.id})}">
         <div>
             <h5  th:text="'Новость: ' + ${article.title} + '. Автор: ' + ${article.author}">VALUE</h5>
-            <img th:src="${'/images/' + article.image.path}" >
+            <img th:src="${'/images/' + article.image.name}" >
         </div>
     </a>
 </div>

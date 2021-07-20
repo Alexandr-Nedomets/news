@@ -14,21 +14,25 @@
 <form th:method="PUT" th:action="@{@{/api/v001/articles/{id}(id=${article.id})}}" enctype="multipart/form-data" th:object="${article}">
     <label for="title">Change name: </label>
     <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">value</div>
     <br/>
     <label for="content">Change description: </label>
     <input type="text" th:field="*{content}" id="content"/>
+    <div style="color:red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">value</div>
     <br/>
     <label for="author">Change author: </label>
     <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">value</div>
     <br/>
-    <img th:src="${'/images/' + article.image.path}" >
+    <img th:src="${'/images/' + article.image.name}" >
     <label class="form-label">Multiple files input example</label>
     <input class="form-control" type="file" name="file" />
     <br/>
     <label for="image.description">Enter image description: </label>
     <input type="text" th:field="*{image.description}" id="image.description"/>
+    <div style="color:red" th:if="${#fields.hasErrors('image.description')}" th:errors="*{image.description}">value</div>
     <br/>
-    <input hidden="true" type="text" th:field="*{image.path}"/>
+    <input hidden="true" type="text" th:field="*{image.name}"/>
     <input hidden="true" type="text" th:field="*{image.id}"/>
     <input type="submit" value="SAVE"/>
 </form>

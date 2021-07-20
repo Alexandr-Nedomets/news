@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ArticleImagesRepository extends JpaRepository<ArticleImage, Long> {
+public interface ArticleImageRepository extends JpaRepository<ArticleImage, Long> {
+
 }
