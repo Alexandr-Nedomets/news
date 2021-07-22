@@ -8,12 +8,15 @@
 </head>
 <body>
 <h1 class="text-center" >GOOD NEWS</h1>
-<form th:method="GET" th:action="@{/api/v001/articles/create}">
+<form th:method="GET" th:action="@{/api/articles/create}">
     <input type="submit" value="Create article!"/>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
 </form>
 <!--Список новостей-->
 <div class="text-center" th:each="article : ${articles}">
-    <a th:href="@{/api/v001/articles/{id}(id=${article.id})}">
+    <a th:href="@{/api/articles/{id}(id=${article.id})}">
         <div>
             <h5  th:text="'Новость: ' + ${article.title} + '. Автор: ' + ${article.author}">VALUE</h5>
             <img th:src="${'/images/' + article.image.name}" >

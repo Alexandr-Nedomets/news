@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_table_article_images" author ="Alexander Ned">
+        <createTable tableName="article_images">
+            <column name="article_image_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="image_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_articles" author ="Alexander Ned">
+        <createTable tableName="articles">
+            <column name="article_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="content" type="text">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_updated" type="datetime" >
+                <constraints nullable="false" />
+            </column>
+            <column name="author" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="article_image_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="article_image_id"
+                                 baseTableName="articles"
+                                 constraintName="fk_article_image_id"
+                                 referencedColumnNames="article_image_id"
+                                 referencedTableName="article_images"/>
+    </changeSet>
+
+    <changeSet id="create_table_users" author ="Alexander Ned">
+        <createTable tableName="users">
+            <column name="user_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(32)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="password" type="varchar(16)">
+                <constraints nullable="false" />
+            </column>
+            <column name="phone" type="varchar(16)">
+                <constraints nullable="false" />
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="first_name" type="varchar(32)">
+                <constraints nullable="false" />
+            </column>
+            <column name="middle_name" type="varchar(32)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="varchar(32)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_roles" author ="Alexander Ned">
+        <createTable tableName="roles">
+            <column name="role_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="role_enum" type="ENUM('ADMIN','AUTHOR')">
+                <constraints unique="true" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_user_roles" author ="Alexander Ned">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="user_roles"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_roles_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="user_roles"
+                                 baseColumnNames="role_id"
+                                 constraintName="fk_user_roles_role"
+                                 referencedTableName="roles"
+                                 referencedColumnNames="role_id"/>
+        <addUniqueConstraint tableName="user_roles" columnNames="user_id, role_id"/>
+    </changeSet>
+
+</databaseChangeLog>
