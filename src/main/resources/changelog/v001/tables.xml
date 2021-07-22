@@ -83,7 +83,7 @@
             <column name="role_id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="role" type="ENUM('ADMIN','AUTHOR')">
+            <column name="role_enum" type="ENUM('ADMIN','AUTHOR')">
                 <constraints unique="true" nullable="false" />
             </column>
         </createTable>

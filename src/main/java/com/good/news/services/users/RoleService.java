@@ -10,12 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RoleService {
 
-//    private final RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     public Role findByRoleEnum(RoleEnum roleEnum) {
-        Role role = new Role(2L, roleEnum);
-//TODO        roleRepository.findByRoleEnum(roleEnum);
-        return role;
+        return roleRepository.findByRoleEnum(roleEnum);
     }
 
 }

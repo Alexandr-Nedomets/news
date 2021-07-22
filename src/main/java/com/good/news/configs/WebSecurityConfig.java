@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .passwordEncoder(NoOpPasswordEncoder.getInstance())
         .usersByUsernameQuery("select username, password, active from users where username=?")
         .authoritiesByUsernameQuery(
-                "select u.username, r.role " +
+                "select u.username, r.role_enum " +
                 "from users u inner join user_roles ur on ur.user_id = u.user_id " +
                 "inner join roles r on r.role_id = ur.role_id where u.username=?");
     }
