@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="add_data_in_table_roles" author="Alexander Ned">
+        <insert tableName="roles">
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role" value="AUTHOR"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_data_in_table_users" author="Alexander Ned">
+        <insert tableName="users">
+            <column name="username" value="admin@good.news.com"/>
+            <column name="password" value="password"/>
+            <column name="phone" value="+7(675)12-12-121"/>
+            <column name="active" value="true"/>
+            <column name="first_name" value="Семен"/>
+            <column name="middle_name" value="Семенович"/>
+            <column name="last_name" value="Семенов"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueComputed="select user_id from users where username = 'admin@good.news.com'"/>
+            <column name="role_id" valueComputed="select role_id from roles where role = 'ADMIN'"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

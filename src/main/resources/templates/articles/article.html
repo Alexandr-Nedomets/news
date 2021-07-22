@@ -18,10 +18,10 @@
     <img th:src="${'/images/' + article.image.name}" >
 </div>
 
-<form th:method="DELETE" th:action="@{/api/v001/articles/{id}(id=${article.id})}">
+<form th:method="DELETE" th:action="@{/api/articles/{id}(id=${article.id})}">
     <input type="submit" value="DELETE"/>
 </form>
-<form th:method="GET" th:action="@{/api/v001/articles/{id}/update(id=${article.id})}">
+<form th:method="GET" th:action="@{/api/articles/{id}/update(id=${article.id})}">
     <input type="submit" value="UPDATE"/>
 </form>
 

@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/api/v001/articles")
+@RequestMapping(value = "/api/articles")
 @AllArgsConstructor
 public class ArticleController {
 
@@ -49,7 +49,7 @@ public class ArticleController {
                          @RequestBody(required = false) MultipartFile file) {
         if (bindingResult.hasErrors()) return "/articles/update";
         articleManager.update(id, article, file);
-        return "redirect:/api/v001/articles/" + id;
+        return "redirect:/api/articles/" + id;
     }
 
     @PostMapping
@@ -58,12 +58,12 @@ public class ArticleController {
                        @RequestBody MultipartFile file) {
         if (bindingResult.hasErrors()) return "/articles/create";
         articleManager.save(article, file);
-        return "redirect:/api/v001/articles";
+        return "redirect:/api/articles";
     }
 
     @DeleteMapping(value = "/{id}")
     public String delete(@PathVariable(value = "id") Long id) {
         articleManager.deleteById(id);
-        return "redirect:/api/v001/articles";
+        return "redirect:/api/articles";
     }
 }
